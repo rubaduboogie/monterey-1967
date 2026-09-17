@@ -6,12 +6,7 @@
     promo: [
       "assets/chunks/promo-000.txt",
       "assets/chunks/promo-001.txt",
-      "assets/chunks/promo-002.txt",
-      "assets/chunks/promo-003.txt",
-      "assets/chunks/promo-004.txt",
-      "assets/chunks/promo-005.txt",
-      "assets/chunks/promo-006.txt",
-      "assets/chunks/promo-007.txt"
+      "assets/chunks/promo-002.txt"
     ]
   };
 
