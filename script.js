@@ -37,9 +37,24 @@ form.addEventListener('submit', async (e) => {
   const data = Object.fromEntries(new FormData(form).entries());
   const tier = tiers[data.tier || 'guest'];
   payButton.disabled = true;
-  payButton.textContent = 'СОЗДАЮ ПЛАТЁЖ…';
-  note.textContent = 'Секунду. Открываю защищённую страницу оплаты.';
+  payButton.textContent = 'ОТПРАВЛЯЮ ЗАЯВКУ…';
+  note.style.fontWeight = '500';
+  note.textContent = 'Сохраняю заявку и готовлю переход к оплате.';
 
+  let leadAccepted = false;
+  try {
+    const leadResponse = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const leadResult = await leadResponse.json().catch(() => ({}));
+    leadAccepted = leadResponse.ok && leadResult.ok;
+  } catch (_) {
+    leadAccepted = false;
+  }
+
+  payButton.textContent = 'СОЗДАЮ ПЛАТЁЖ…';
   try {
     const response = await fetch('/api/create-payment', {
       method: 'POST',
@@ -53,7 +68,8 @@ form.addEventListener('submit', async (e) => {
     localStorage.setItem('montereyOrderDraft', JSON.stringify({ ...data, createdAt: new Date().toISOString() }));
     window.location.href = result.confirmationUrl;
   } catch (err) {
-    note.textContent = `${err.message} Данные формы сохранены в браузере.`;
+    const prefix = leadAccepted ? 'Заявка принята. ' : '';
+    note.textContent = `${prefix}${err.message}`;
     note.style.fontWeight = '800';
     payButton.disabled = false;
     payButton.textContent = `ПЕРЕЙТИ К ОПЛАТЕ · ${money.format(tier.price)} ₽`;
