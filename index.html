@@ -20,9 +20,7 @@
 
   <main id="top">
     <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="Монтерей 1967 — фестивальный видео-луп">
-        <source src="assets/hero-web.mp4" type="video/mp4" />
-      </video>
+      <video class="hero-video" data-chunked-video="hero" autoplay muted loop playsinline preload="none" aria-label="Монтерей 1967 — фестивальный видео-луп"></video>
       <div class="hero-shade"></div>
       <div class="hero-copy wrap">
         <p class="eyebrow">МОНТЕРЕЙ 1967 · ЭПИЗОД 3</p>
@@ -37,9 +35,7 @@
 
     <section id="promo" class="section wrap promo-section">
       <div class="promo-media">
-        <video controls playsinline preload="metadata" aria-label="Промо Монтерей 1967">
-          <source src="assets/promo-deploy.mp4" type="video/mp4" />
-        </video>
+        <video data-chunked-video="promo" controls playsinline preload="none" aria-label="Промо Монтерей 1967"></video>
       </div>
       <div class="promo-copy">
         <p class="eyebrow dark">КАК ЭТО РАБОТАЕТ</p>
@@ -71,7 +67,8 @@
               <li>1 появление в фестивальной сцене</li>
               <li>простое читаемое действие</li>
               <li>персонаж живёт внутри толпы и мира</li>
-              <li>автор выбирает место и действие внутри готовой сцены</li><li>без отдельной сцены и влияния на ход эпизода</li>
+              <li>автор выбирает место и действие внутри готовой сцены</li>
+              <li>без отдельной сцены и влияния на ход эпизода</li>
             </ul>
             <button class="choose-tier" data-tier="guest">ВЫБРАТЬ</button>
           </article>
@@ -84,7 +81,8 @@
               <li>1–2 заметных появления</li>
               <li>своя роль и персональное действие</li>
               <li>передний или средний план</li>
-              <li>согласование внешности персонажа</li><li>видимый момент, но без отдельного сюжетного эпизода</li>
+              <li>согласование внешности персонажа</li>
+              <li>видимый момент, но без отдельного сюжетного эпизода</li>
             </ul>
             <button class="choose-tier" data-tier="featured">ВЫБРАТЬ</button>
           </article>
@@ -97,7 +95,8 @@
               <li>отдельная микро-сцена вокруг персонажа</li>
               <li>уникальное действие, реквизит или пасхалка</li>
               <li>взаимодействие с героями мира</li>
-              <li>согласование персонажа и идеи сцены</li><li>сцена строится вокруг твоего действия, а не просто присутствия</li>
+              <li>согласование персонажа и идеи сцены</li>
+              <li>сцена строится вокруг твоего действия, а не просто присутствия</li>
             </ul>
             <button class="choose-tier" data-tier="cameo">ВЫБРАТЬ</button>
           </article>
@@ -258,6 +257,7 @@
     </div>
   </footer>
 
+  <script src="video-loader.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
