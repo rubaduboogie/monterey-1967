@@ -1,7 +1,8 @@
 (() => {
+  const base = "https://raw.githubusercontent.com/rubaduboogie/monterey-1967/main/assets";
   const sources = {
-    hero: "assets/hero-web.mp4",
-    promo: "assets/promo-web.mp4"
+    hero: `${base}/hero-web.mp4`,
+    promo: `${base}/promo-web.mp4`
   };
 
   function attach(video, key) {
