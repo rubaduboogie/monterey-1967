@@ -1,8 +1,6 @@
-name: Fetch video assets
+name: Fetch video assets (manual fallback)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,37 +8,35 @@ permissions:
 
 jobs:
   fetch-videos:
-    if: ${{ !contains(github.event.head_commit.message || '', '[skip ci]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download video assets
+      - name: Download fallback video assets
         shell: bash
         run: |
           mkdir -p assets
           curl -L --fail --retry 3 --retry-delay 2 'https://at.adobe.com/VyPC1HBXOzUAb977' -o assets/hero-web.mp4
-          curl -L --fail --retry 3 --retry-delay 2 'https://at.adobe.com/9mWEcC8u54ie83C6' -o assets/promo-web.mp4
           python - <<'PY'
           from pathlib import Path
-          for p in [Path('assets/hero-web.mp4'), Path('assets/promo-web.mp4')]:
-              head = p.read_bytes()[:32]
-              if b'ftyp' not in head:
-                  raise SystemExit(f'{p} is not an MP4: {head!r}')
-              if p.stat().st_size < 10000:
-                  raise SystemExit(f'{p} is unexpectedly small')
-              print(p, p.stat().st_size)
+          p = Path('assets/hero-web.mp4')
+          head = p.read_bytes()[:32]
+          if b'ftyp' not in head:
+              raise SystemExit(f'{p} is not an MP4: {head!r}')
+          if p.stat().st_size < 10000:
+              raise SystemExit(f'{p} is unexpectedly small')
+          print(p, p.stat().st_size)
           PY
 
-      - name: Commit video assets
+      - name: Commit fallback hero asset
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/hero-web.mp4 assets/promo-web.mp4
+          git add assets/hero-web.mp4
           if git diff --cached --quiet; then
             echo 'No changes to commit'
           else
-            git commit -m 'Add video assets [skip ci]'
+            git commit -m 'Refresh hero asset [skip ci]'
             git push
           fi
