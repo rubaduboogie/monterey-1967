@@ -1,13 +1,17 @@
 (() => {
-  const base = "https://raw.githubusercontent.com/rubaduboogie/monterey-1967/main/assets";
   const sources = {
-    hero: `${base}/hero-web.mp4`,
-    promo: `${base}/promo-web.mp4`
+    hero: "assets/hero-web.mp4",
+    promo: "assets/promo-web.mp4"
   };
 
   function attach(video, key) {
     const src = sources[key];
     if (!video || !src) return;
+
+    if (key === "hero") {
+      video.poster = "assets/hero-poster.jpg";
+    }
+
     video.src = src;
     video.preload = key === "hero" ? "metadata" : "none";
     video.load();
