@@ -1,3 +1,21 @@
+async function sendTelegram(text) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return false;
+  try {
+    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+    });
+    const result = await response.json().catch(() => ({}));
+    return response.ok && result.ok;
+  } catch (error) {
+    console.error('Telegram payment notification error', error);
+    return false;
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).end();
 
@@ -19,13 +37,29 @@ module.exports = async (req, res) => {
     if (!check.ok) return res.status(502).end();
 
     if (payment.status === 'succeeded') {
-      console.log('PAID_ORDER', JSON.stringify({
+      const metadata = payment.metadata || {};
+      const record = {
         paymentId: payment.id,
         amount: payment.amount,
-        metadata: payment.metadata || {},
+        metadata,
         paidAt: new Date().toISOString(),
-      }));
-      // Следующий шаг при необходимости: отправлять подтверждённый заказ в Telegram/CRM.
+      };
+      console.log('PAID_ORDER', JSON.stringify(record));
+
+      const text = [
+        '✅ ОПЛАЧЕНО · МОНТЕРЕЙ 1967',
+        '',
+        `Сумма: ${payment.amount?.value || '—'} ${payment.amount?.currency || 'RUB'}`,
+        `Уровень: ${metadata.tier || '—'}`,
+        `Имя: ${metadata.name || '—'}`,
+        `Email: ${metadata.email || '—'}`,
+        `Telegram: ${metadata.telegram || '—'}`,
+        `Роль: ${metadata.role || '—'}`,
+        `Идея: ${metadata.comment || '—'}`,
+        `Payment ID: ${payment.id}`,
+      ].join('\n');
+
+      await sendTelegram(text);
     }
 
     return res.status(200).end();
