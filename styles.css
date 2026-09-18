@@ -21,3 +21,5 @@
 .footer b{font-family:Oswald,sans-serif;letter-spacing:.09em}
 .footer span{color:#cfc0a8}
 @media(max-width:900px){.payment-steps{grid-template-columns:1fr}.footer-inner{display:block}.footer span{display:block;margin-top:6px}}
+
+.consent a,.footer a{text-decoration:underline;text-underline-offset:2px}.footer a{color:var(--paper)}
