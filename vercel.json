@@ -4,6 +4,14 @@
     {
       "source": "/requisites",
       "destination": "/api/requisites"
+    },
+    {
+      "source": "/terms",
+      "destination": "/api/terms"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/api/privacy"
     }
   ]
 }
