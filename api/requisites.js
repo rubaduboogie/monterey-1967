@@ -13,13 +13,10 @@ module.exports = async (req, res) => {
   const name = esc(process.env.SELLER_NAME);
   const taxId = esc(process.env.SELLER_TAX_ID);
   const email = esc(process.env.SELLER_EMAIL);
-  const phone = esc(process.env.SELLER_PHONE);
-
   const missing = [
     !name && 'SELLER_NAME',
     !taxId && 'SELLER_TAX_ID',
-    !email && 'SELLER_EMAIL',
-    !phone && 'SELLER_PHONE'
+    !email && 'SELLER_EMAIL'
   ].filter(Boolean);
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -29,8 +26,7 @@ module.exports = async (req, res) => {
     name && ['Исполнитель', name],
     ['Статус', 'Самозанятый · плательщик НПД'],
     taxId && ['ИНН', taxId],
-    email && ['Электронная почта', email],
-    phone && ['Телефон', phone]
+    email && ['Электронная почта', email]
   ].filter(Boolean)
    .map(([label, value]) => `<div class="row"><span>${label}</span><strong>${value}</strong></div>`)
    .join('');
