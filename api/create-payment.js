@@ -113,7 +113,26 @@ module.exports = async (req, res) => {
     const json = await response.json().catch(() => ({}));
     if (!response.ok) {
       console.error('YooKassa error', response.status, json);
-      return res.status(502).json({ error: 'Платёжный сервис не принял запрос. Проверьте настройки магазина.' });
+
+      const safe = {
+        status: response.status,
+        type: json.type || null,
+        code: json.code || null,
+        description: json.description || null,
+        parameter: json.parameter || null,
+      };
+
+      // В тестовом режиме возвращаем безопасную диагностику без ключей и токенов.
+      const diagnostic = [safe.code, safe.description, safe.parameter && `параметр: ${safe.parameter}`]
+        .filter(Boolean)
+        .join(' · ');
+
+      return res.status(502).json({
+        error: diagnostic
+          ? `ЮKassa отклонила тестовый запрос: ${diagnostic}`
+          : 'ЮKassa отклонила тестовый запрос. Проверьте shopId и секретный ключ.',
+        diagnostic: safe,
+      });
     }
 
     const confirmationUrl = json.confirmation?.confirmation_url;
