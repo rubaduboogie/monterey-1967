@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Монтерей 1967 — попасть в эпизод 3</title>
   <meta name="description" content="Попади в эпизод 3 про Джими Хендрикса: выбери уровень участия, роль и стань антропоморфным персонажем Монтерея 1967." />
-  <meta name="theme-color" content="#f4ead2" />
+  <meta name="theme-color" content="#173f31" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Roboto+Slab:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -24,7 +24,7 @@
       <div class="hero-shade"></div>
       <div class="hero-copy wrap">
         <p class="eyebrow">МОНТЕРЕЙ 1967 · ЭПИЗОД 3</p>
-        <h1>ПОПАДИ В ЭПИЗОД 3 ПРО ДЖИМИ ХЕНДРИКСА</h1>
+        <h1><span class="hero-title-main">ПОПАДИ В ЭПИЗОД 3</span><span class="hero-title-accent">ПРО ДЖИМИ ХЕНДРИКСА</span></h1>
         <p class="hero-lead">Я превращу тебя в антропоморфного персонажа и впишу в историю фестиваля. Это не аватар. Это твоя роль.</p>
         <div class="hero-actions">
           <a class="button primary" href="#tiers">ВЫБРАТЬ УЧАСТИЕ</a>
@@ -40,8 +40,12 @@
       <div class="promo-copy">
         <p class="eyebrow dark">КАК ЭТО РАБОТАЕТ</p>
         <h2>ТЫ НЕ ПОКУПАЕШЬ КАРТИНКУ. ТЫ ПОПАДАЕШЬ ВНУТРЬ ЭПИЗОДА.</h2>
-        <p>Ты выбираешь уровень участия и говоришь, кем хочешь быть. Я собираю персонажа по твоей внешности, характеру и пожеланиям, а затем вписываю его в готовящийся третий эпизод.</p>
-        <p>Можно просто оказаться в мире фестиваля. Можно получить заметный момент. Можно забрать отдельную сцену. А можно стать частью сюжетного действия.</p>
+        <p class="promo-intro">Ты выбираешь роль и уровень участия. Я собираю персонажа по твоей внешности, характеру и пожеланиям — и вписываю его в живой мир фестиваля.</p>
+        <div class="story-steps" aria-label="Как это работает">
+          <article><span>01</span><div><b>ВЫБИРАЕШЬ РОЛЬ</b><p>Кем ты будешь на фестивале и насколько заметным будет твой момент.</p></div></article>
+          <article><span>02</span><div><b>Я СОЗДАЮ ПЕРСОНАЖА</b><p>Антропоморфный герой собирается под твою внешность, характер и настроение.</p></div></article>
+          <article><span>03</span><div><b>ТЫ ПОПАДАЕШЬ В ЭПИЗОД</b><p>Не как аватар, а как часть настоящей сцены и истории.</p></div></article>
+        </div>
         <div class="date-strip" aria-label="Ключевые даты">
           <div><small>СТАРТ НАБОРА</small><strong>21 СЕНТЯБРЯ</strong></div>
           <div><small>АНОНС ПРОЕКТА</small><strong>5 ОКТЯБРЯ</strong></div>
@@ -56,6 +60,7 @@
         <div class="section-head compact">
           <h2>ВЫБЕРИ, СКОЛЬКО МЕСТА ТВОЙ ГЕРОЙ ПОЛУЧИТ В ИСТОРИИ</h2>
           <p>Цена зависит не от животного и не от «красоты» персонажа, а от объёма работы и его роли в эпизоде.</p>
+          <div class="scribble-note">Разные роли.<br>Одна история.</div>
         </div>
 
         <div class="tier-grid">
@@ -100,18 +105,20 @@
             </ul>
             <button class="choose-tier" data-tier="cameo">ВЫБРАТЬ</button>
           </article>
-        </div>
 
-        <div class="headliner-strip">
-          <div>
-            <span class="small-label">04 · ГЛАВНАЯ РОЛЬ</span>
+          <article class="tier-card red">
+            <div class="tier-top"><span>04</span><b>ГЛАВНАЯ РОЛЬ</b></div>
             <h3>ТЫ ЧАСТЬ СЮЖЕТА</h3>
-            <p>Несколько связанных появлений, собственный короткий сюжетный ход и совместная разработка роли. Персонаж может запускать событие, менять развитие сцены или связывать два эпизода.</p>
-          </div>
-          <div class="headliner-buy">
-            <strong>19 900 ₽</strong>
-            <button class="choose-tier inverse" data-tier="headliner">ВЫБРАТЬ</button>
-          </div>
+            <div class="price">19 900 ₽</div>
+            <ul>
+              <li>несколько связанных появлений</li>
+              <li>собственный короткий сюжетный ход</li>
+              <li>совместная разработка роли</li>
+              <li>персонаж может запускать событие или связывать сцены</li>
+              <li>максимальный объём индивидуальной работы</li>
+            </ul>
+            <button class="choose-tier" data-tier="headliner">ВЫБРАТЬ</button>
+          </article>
         </div>
 
         <div class="compare-wrap" aria-labelledby="compare-title">
@@ -252,7 +259,7 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <b>МОНТЕРЕЙ 1967 · ЭПИЗОД 3</b>
+      <b>МОНТЕРЕЙ 1967 · STILL INSPIRES</b>
       <span>Авторский анимационный проект · <a href="/terms">Оферта</a> · <a href="/privacy">Персональные данные</a> · <a href="/requisites">Реквизиты</a></span>
     </div>
   </footer>
