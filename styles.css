@@ -729,3 +729,48 @@ main{
   .footer-inner{display:block}
   .footer span{display:block;margin-top:6px;line-height:1.6}
 }
+
+
+/* --- Visual role cards, included icons and footer panorama --- */
+.role-showcase .section-head{grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);align-items:end}
+.role-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-top:28px}
+.role-card{overflow:hidden;border:2px solid var(--ink);background:var(--paper-light);box-shadow:5px 6px 0 var(--ink)}
+.role-poster{width:100%;aspect-ratio:3/4;background-image:url('/assets/monterey-role-cards.webp');background-repeat:no-repeat;background-size:200% 200%;border-bottom:2px solid var(--ink)}
+.role-poster-guest{background-position:0 0}
+.role-poster-reporter{background-position:100% 0}
+.role-poster-groupie{background-position:0 100%}
+.role-poster-artist{background-position:100% 100%}
+.role-card-copy{padding:15px 15px 17px}
+.role-card-copy>span{font:900 12px Oswald,sans-serif;letter-spacing:.12em;color:var(--brick)}
+.role-card-copy h3{margin:4px 0 8px;font:900 25px/.95 "Roboto Slab",serif;text-transform:uppercase}
+.role-card-copy p{margin:0;color:#5b4c3e;font-size:13px;line-height:1.45}
+
+.includes-block{margin-top:54px;padding-top:30px;border-top:2px solid var(--ink)}
+.includes-icons{display:block;width:min(100%,900px);margin:6px auto 22px;object-fit:contain}
+.include-labels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.include-labels>div{padding:12px 10px;border-top:2px solid rgba(31,26,21,.55);text-align:center}
+.include-labels b{display:block;font:900 16px/1.05 "Roboto Slab",serif;text-transform:uppercase}
+.include-labels span{display:block;margin-top:5px;color:#6b5a46;font-size:12px}
+
+.footer-visual{padding:0;background:#0e241c;overflow:hidden;border-top:0}
+.footer-panorama{display:block;width:100%;aspect-ratio:3/1;object-fit:cover;object-position:center}
+.footer-visual .footer-inner{padding:18px 0 22px}
+
+@media(max-width:1000px){
+  .role-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .include-labels{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .role-showcase .section-head{grid-template-columns:1fr}
+  .role-card-grid{grid-template-columns:1fr;gap:18px}
+  .role-card{display:grid;grid-template-columns:minmax(132px,42%) 1fr;align-items:stretch}
+  .role-poster{height:100%;aspect-ratio:auto;border-bottom:0;border-right:2px solid var(--ink)}
+  .role-card-copy{display:flex;flex-direction:column;justify-content:center}
+  .role-card-copy h3{font-size:23px}
+  .role-card-copy p{font-size:13px}
+  .includes-block{margin-top:42px}
+  .includes-icons{margin-bottom:10px}
+  .include-labels{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-panorama{aspect-ratio:2/1;object-position:center}
+  .footer-visual .footer-inner{padding:15px 14px 20px}
+}
