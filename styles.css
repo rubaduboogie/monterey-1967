@@ -732,22 +732,81 @@ main{
 
 
 /* --- Visual role cards, included icons and footer panorama --- */
-.role-showcase .section-head{grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr);align-items:end}
-.role-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-top:28px}
-.role-card{overflow:hidden;border:2px solid var(--ink);background:var(--paper-light);box-shadow:5px 6px 0 var(--ink)}
+.role-showcase{padding-top:44px}
+.role-showcase>.eyebrow{margin-bottom:14px}
+.role-card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:8px;
+}
+.role-card{
+  overflow:hidden;
+  border:2px solid var(--ink);
+  box-shadow:5px 6px 0 var(--ink);
+  color:#fff7e8;
+  min-width:0;
+}
+.role-card-guest{background:#c85a2d}
+.role-card-reporter{background:#315f49}
+.role-card-groupie{background:#c87432}
+.role-card-artist{background:#a73f32}
+
+.role-image-window{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/3;
+  border-bottom:2px solid var(--ink);
+  background:#b96d43;
+}
 .role-poster{
   display:block;
   width:100%;
-  aspect-ratio:3/4;
+  height:100%;
   object-fit:cover;
-  object-position:center;
-  border-bottom:2px solid var(--ink);
-  background:var(--paper-deep);
+  object-position:center 29%;
+  transform:scale(1.16);
+  transform-origin:center 29%;
 }
-.role-card-copy{padding:15px 15px 17px}
-.role-card-copy>span{font:900 12px Oswald,sans-serif;letter-spacing:.12em;color:var(--brick)}
-.role-card-copy h3{margin:4px 0 8px;font:900 25px/.95 "Roboto Slab",serif;text-transform:uppercase}
-.role-card-copy p{margin:0;color:#5b4c3e;font-size:13px;line-height:1.45}
+.role-card-copy{padding:15px 16px 18px}
+.role-card-copy h3{
+  margin:0;
+  font:900 29px/.92 "Roboto Slab",serif;
+  letter-spacing:-.015em;
+  text-transform:uppercase;
+  color:#fff7e8;
+}
+.role-card-copy strong{
+  display:block;
+  margin-top:3px;
+  font:900 13px/1.05 Oswald,sans-serif;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:#fff7e8;
+}
+.role-card-copy ul{
+  margin:15px 0 0;
+  padding:0;
+  list-style:none;
+}
+.role-card-copy li{
+  position:relative;
+  margin:8px 0;
+  padding-left:14px;
+  font-size:13px;
+  line-height:1.3;
+  color:#fff7e8;
+}
+.role-card-copy li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.52em;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff7e8;
+}
 
 .includes-block{margin-top:54px;padding-top:30px;border-top:2px solid var(--ink)}
 .includes-icons{
@@ -776,25 +835,49 @@ main{
 .footer-visual .footer-inner{padding:18px 0 22px}
 
 @media(max-width:1000px){
-  .role-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .role-card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .include-labels{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:700px){
-  .role-showcase .section-head{grid-template-columns:1fr}
-  .role-card-grid{grid-template-columns:1fr;gap:18px}
-  .role-card{display:grid;grid-template-columns:minmax(132px,42%) 1fr;align-items:stretch}
-  .role-poster{
+  .role-showcase{padding-top:30px}
+  .role-card-grid{grid-template-columns:1fr;gap:10px}
+  .role-card{
+    display:grid;
+    grid-template-columns:38% 62%;
+    min-height:150px;
+    box-shadow:3px 4px 0 var(--ink);
+  }
+  .role-image-window{
     height:100%;
-    min-height:220px;
+    min-height:150px;
     aspect-ratio:auto;
-    object-fit:cover;
-    object-position:center;
     border-bottom:0;
     border-right:2px solid var(--ink);
   }
-  .role-card-copy{display:flex;flex-direction:column;justify-content:center}
-  .role-card-copy h3{font-size:23px}
-  .role-card-copy p{font-size:13px}
+  .role-poster{
+    transform:scale(1.22);
+    object-position:center 30%;
+    transform-origin:center 30%;
+  }
+  .role-card-copy{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:12px 13px 13px;
+  }
+  .role-card-copy h3{font-size:24px}
+  .role-card-copy strong{font-size:11px}
+  .role-card-copy ul{margin-top:10px}
+  .role-card-copy li{
+    margin:5px 0;
+    padding-left:12px;
+    font-size:11.5px;
+    line-height:1.25;
+  }
+  .role-card-copy li::before{
+    width:5px;
+    height:5px;
+  }
   .includes-block{margin-top:42px}
   .includes-icons{margin-bottom:10px}
   .include-labels{grid-template-columns:repeat(2,minmax(0,1fr))}
