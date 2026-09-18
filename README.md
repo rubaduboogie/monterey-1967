@@ -12,3 +12,6 @@
 Пока `PAYMENTS_ENABLED` не равен `true`, боевой платёж не создаётся.
 
 <!-- production deploy trigger: 2026-09-17 -->
+
+
+- Telegram-заявки подключены через переменные окружения Vercel.
