@@ -33,18 +33,14 @@ jobs:
           assemble groupie role-groupie.webp
           assemble artist role-artist.webp
           assemble footer footer-panorama.webp
-          assemble icon-1 icon-character.webp
-          assemble icon-2 icon-scene.webp
-          assemble icon-3 icon-music.webp
-          assemble icon-4 icon-prep.webp
-          assemble icon-5 icon-calendar.webp
+          assemble icons includes-icons.webp
 
       - name: Commit assembled assets
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/role-guest.webp assets/role-reporter.webp assets/role-groupie.webp assets/role-artist.webp assets/footer-panorama.webp assets/icon-character.webp assets/icon-scene.webp assets/icon-music.webp assets/icon-prep.webp assets/icon-calendar.webp
+          git add assets/role-guest.webp assets/role-reporter.webp assets/role-groupie.webp assets/role-artist.webp assets/footer-panorama.webp assets/includes-icons.webp
           if git diff --cached --quiet; then
             echo 'No asset changes'
           else
