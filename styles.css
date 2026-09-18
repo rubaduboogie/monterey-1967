@@ -760,10 +760,10 @@ main{
 }
 .role-card-copy{
   position:absolute;
-  left:8.2%;
-  right:8.2%;
-  top:59.5%;
-  bottom:7.2%;
+  left:9.2%;
+  right:9.2%;
+  top:61.5%;
+  bottom:4.5%;
   z-index:2;
   display:flex;
   flex-direction:column;
@@ -787,16 +787,16 @@ main{
   color:#fff6df;
 }
 .role-card-copy ul{
-  margin:17px 0 0;
+  margin:12px 0 0;
   padding:0;
   list-style:none;
 }
 .role-card-copy li{
   position:relative;
-  margin:8px 0;
+  margin:5px 0;
   padding-left:13px;
-  font-size:12.5px;
-  line-height:1.25;
+  font-size:12px;
+  line-height:1.2;
   color:#fff6df;
 }
 .role-card-copy li::before{
@@ -950,16 +950,16 @@ main{
     margin:0 auto;
   }
   .role-card-copy{
-    left:8.5%;
-    right:8.5%;
-    top:59%;
-    bottom:7%;
+    left:9.2%;
+    right:9.2%;
+    top:61.5%;
+    bottom:4.5%;
   }
   .role-card-copy h3{font-size:31px}
   .role-card-copy strong{font-size:12px}
-  .role-card-copy ul{margin-top:15px}
+  .role-card-copy ul{margin-top:12px}
   .role-card-copy li{
-    margin:7px 0;
+    margin:5px 0;
     font-size:13px;
     line-height:1.28;
   }
