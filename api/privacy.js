@@ -1,0 +1,70 @@
+function esc(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+module.exports = async (req, res) => {
+  if (req.method !== 'GET') return res.status(405).end();
+  const name = esc(process.env.SELLER_NAME);
+  const taxId = esc(process.env.SELLER_TAX_ID);
+  const email = esc(process.env.SELLER_EMAIL);
+  res.setHeader('Content-Type','text/html; charset=utf-8');
+  res.setHeader('Cache-Control','public, max-age=0, must-revalidate');
+  return res.status(200).send(`<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Политика обработки персональных данных — Монтерей 1967</title><meta name="robots" content="noindex">
+<style>
+:root{--paper:#f4ead2;--ink:#211c17;--muted:#6e5e4d}*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+main{width:min(820px,calc(100% - 32px));margin:auto;padding:48px 0 76px}a{color:inherit}
+.back{display:inline-block;margin-bottom:30px;text-decoration:none;font-weight:800}
+h1{font-size:clamp(36px,7vw,62px);line-height:.96;margin:0 0 12px;text-transform:uppercase}
+.meta{color:var(--muted);margin-bottom:30px}.box{border:2px solid var(--ink);background:#fff8e9;box-shadow:7px 7px 0 var(--ink);padding:20px;margin:24px 0}
+h2{font-size:24px;margin:32px 0 10px}p,li{font-size:16px}nav{display:flex;gap:18px;flex-wrap:wrap;margin-top:34px;font-weight:700}
+</style></head><body><main>
+<a class="back" href="/">← МОНТЕРЕЙ 1967</a>
+<h1>Политика обработки персональных данных</h1>
+<p class="meta">редакция от 18.09.2026</p>
+<div class="box">
+<strong>Оператор:</strong> ${name || 'данные оператора'}<br>
+<strong>Статус:</strong> самозанятый, плательщик НПД<br>
+<strong>ИНН:</strong> ${taxId || '—'}<br>
+<strong>Контакт по вопросам персональных данных:</strong> ${email ? `<a href="mailto:${email}">${email}</a>` : '—'}
+</div>
+
+<h2>1. Какие данные обрабатываются</h2>
+<p>При оформлении заявки на сайте могут обрабатываться: имя, адрес электронной почты, указанный Telegram-контакт, выбранный тариф, желаемая роль и текст комментария. После оплаты также может обрабатываться идентификатор и статус платежа. Фотографии и дополнительные творческие материалы передаются отдельно по согласованному каналу связи.</p>
+
+<h2>2. Для чего нужны данные</h2>
+<ul>
+<li>принять и обработать заявку;</li>
+<li>заключить и исполнить договор на оказание услуги;</li>
+<li>организовать оплату и подтвердить её статус;</li>
+<li>связаться с Заказчиком по вопросам персонажа, согласований и результата;</li>
+<li>исполнить обязанности, установленные законодательством РФ.</li>
+</ul>
+
+<h2>3. Правовые основания</h2>
+<p>Обработка осуществляется на основании согласия субъекта персональных данных, необходимости заключения и исполнения договора, стороной которого является субъект, а также требований законодательства Российской Федерации.</p>
+
+<h2>4. Какие действия совершаются с данными</h2>
+<p>Сбор, запись, систематизация, хранение, уточнение, использование, передача в объёме, необходимом для оплаты и технического функционирования сервиса, блокирование и удаление.</p>
+
+<h2>5. Кому данные могут передаваться</h2>
+<p>В необходимом объёме данные могут обрабатываться платёжным провайдером ЮKassa и техническими подрядчиками, обеспечивающими работу сайта и служебные уведомления. Передача не используется для продажи данных, рекламных рассылок третьих лиц или формирования сторонних баз клиентов.</p>
+
+<h2>6. Срок обработки</h2>
+<p>Данные обрабатываются до достижения целей обработки либо до отзыва согласия, если более длительное хранение не требуется по закону или для защиты законных интересов сторон по уже заключённому договору.</p>
+
+<h2>7. Права пользователя</h2>
+<p>Пользователь может запросить сведения об обработке своих данных, потребовать уточнения, блокирования или удаления данных, а также отозвать согласие, направив письмо на ${email ? `<a href="mailto:${email}">${email}</a>` : 'электронную почту Оператора'}.</p>
+
+<h2>8. Безопасность</h2>
+<p>Оператор принимает разумные организационные и технические меры для защиты персональных данных от неправомерного доступа, изменения, раскрытия или уничтожения.</p>
+
+<h2>9. Изменения политики</h2>
+<p>Актуальная редакция политики публикуется по этому адресу. Новая редакция применяется с момента её публикации, если в ней не указан иной срок.</p>
+
+<nav><a href="/terms">Публичная оферта</a><a href="/requisites">Реквизиты</a><a href="/">Вернуться на сайт</a></nav>
+</main></body></html>`);
+};
