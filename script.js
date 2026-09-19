@@ -1,8 +1,8 @@
 const tiers = {
-  guest: { label: 'ГОСТЬ ФЕСТИВАЛЯ', price: 1967 },
+  guest: { label: 'МАССОВКА', price: 1967 },
   featured: { label: 'ПЕРВЫЙ РЯД', price: 4990 },
-  cameo: { label: 'КАМЕО', price: 9900 },
-  headliner: { label: 'ГЛАВНАЯ РОЛЬ', price: 19900 },
+  cameo: { label: 'VIP-КАМЕО', price: 9900 },
+  headliner: { label: 'ХЕДЛАЙНЕР', price: 19900 },
 };
 
 const money = new Intl.NumberFormat('ru-RU');
@@ -29,6 +29,28 @@ document.querySelectorAll('.choose-tier').forEach(btn => {
   btn.addEventListener('click', () => selectTier(btn.dataset.tier));
 });
 form.querySelectorAll('input[name="tier"]').forEach(el => el.addEventListener('change', updatePrice));
+
+const roleIdeaButtons = [...document.querySelectorAll('[data-role-idea]')];
+const roleIdeaDetail = document.getElementById('roleIdeaDetail');
+const roleInput = form.querySelector('input[name="role"]');
+
+roleIdeaButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    roleIdeaButtons.forEach(item => {
+      const selected = item === button;
+      item.classList.toggle('active', selected);
+      item.setAttribute('aria-pressed', String(selected));
+    });
+    roleIdeaDetail.innerHTML = `<b>${button.dataset.roleIdea}.</b> ${button.dataset.roleCopy}`;
+    roleInput.value = button.dataset.roleIdea;
+  });
+});
+
+document.getElementById('surpriseRole')?.addEventListener('click', () => {
+  roleInput.value = 'Реши за меня';
+  roleInput.focus({ preventScroll: true });
+  document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+});
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();

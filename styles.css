@@ -268,51 +268,81 @@ main{
 }
 .tier-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
 }
 .tier-card{
   border:2px solid var(--ink);
   background:var(--paper-light);
   box-shadow:5px 6px 0 var(--ink);
-  padding:0 16px 17px;
-  min-height:478px;
+  padding:0 24px 22px;
+  min-height:550px;
   display:flex;
   flex-direction:column;
   overflow:hidden;
 }
 .tier-card.featured{transform:none}
 .tier-top{
-  margin:0 -16px 17px;
-  padding:12px 14px;
+  margin:0 -24px 22px;
+  padding:13px 18px;
   display:flex;justify-content:space-between;gap:10px;
   border-bottom:2px solid var(--ink);
-  font:700 13px Oswald,sans-serif;
-  letter-spacing:.05em;
+  font:700 14px Oswald,sans-serif;
+  letter-spacing:.07em;
 }
 .tier-card.blue .tier-top{background:var(--sky)}
-.tier-card.green .tier-top{background:var(--green);color:#fff4d7}
-.tier-card.orange .tier-top{background:var(--orange);color:#fff4d7}
+.tier-card.green .tier-top{background:#95a46e;color:var(--ink)}
+.tier-card.orange .tier-top{background:#e87945;color:var(--ink)}
 .tier-card.red .tier-top{background:var(--red);color:#fff4d7}
 .tier-card h3{
-  font:900 26px/.96 "Roboto Slab",serif;
+  font:900 30px/.98 "Roboto Slab",serif;
   text-transform:uppercase;
-  min-height:52px;
+  min-height:58px;
   margin:0 0 14px;
   letter-spacing:-.03em;
 }
 .price{
-  font:900 37px/1 "Roboto Slab",serif;
-  margin-bottom:14px;
+  font:900 40px/1 "Roboto Slab",serif;
+  margin-bottom:18px;
   color:var(--forest);
 }
-.tier-card ul{
-  margin:0 0 20px;
-  padding-left:18px;
-  color:#564839;
-  font-size:13px;
+.tier-card h4{
+  margin:0 0 7px;
+  font:700 13px/1 Oswald,sans-serif;
+  letter-spacing:.12em;
+  color:var(--brick);
 }
-.tier-card li{margin:7px 0}
+.tier-card ul{
+  margin:0 0 18px;
+  padding-left:20px;
+  color:#564839;
+  font-size:15px;
+  line-height:1.42;
+}
+.tier-card li{margin:6px 0}
+.tier-result{
+  display:grid;
+  grid-template-columns:118px 1fr;
+  gap:13px;
+  margin:0 -4px 14px;
+  padding:12px 4px;
+  border-top:1px solid rgba(31,26,21,.45);
+  border-bottom:1px solid rgba(31,26,21,.45);
+  font-size:14px;
+  line-height:1.4;
+}
+.tier-result b{
+  font:700 12px/1.25 Oswald,sans-serif;
+  letter-spacing:.08em;
+  color:var(--forest);
+}
+.tier-limit{
+  margin:0 0 20px;
+  color:#645342;
+  font-size:14px;
+  line-height:1.45;
+}
+.tier-limit b{color:var(--ink)}
 .tier-card .choose-tier{
   margin-top:auto;
   width:100%;
@@ -326,42 +356,44 @@ main{
 .headliner-strip,.headliner-buy,.small-label{display:none}
 
 /* comparison */
-.compare-wrap{margin-top:66px}
+.compare-wrap{margin-top:62px}
 .compare-head h3{
-  margin:0 0 22px;
+  margin:0 0 20px;
   max-width:850px;
   font:900 clamp(38px,5vw,62px)/.9 "Roboto Slab",serif;
   letter-spacing:-.04em;
   text-transform:uppercase;
 }
-.table-scroll{overflow-x:auto;padding:0 7px 12px 0;scrollbar-color:var(--brick) var(--paper-deep)}
+.table-scroll{overflow-x:auto;padding:0 0 10px;scrollbar-color:var(--brick) var(--paper-deep)}
 .compare-table{
   width:100%;
-  min-width:920px;
+  min-width:860px;
   border-collapse:collapse;
-  background:var(--paper-light);
-  border:2px solid var(--ink);
-  box-shadow:6px 6px 0 var(--ink);
+  background:transparent;
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
 }
 .compare-table th,.compare-table td{
-  padding:12px 11px;
-  border-right:1px solid #9e8769;
-  border-bottom:1px solid #9e8769;
+  padding:14px 13px;
+  border-right:0;
+  border-bottom:1px solid rgba(111,89,64,.48);
   vertical-align:top;
-  font-size:13px;
+  font-size:14px;
+  line-height:1.42;
 }
 .compare-table th{
-  background:var(--paper-deep);
-  font:800 13px Oswald,sans-serif;
+  background:rgba(230,207,159,.52);
+  font:800 14px Oswald,sans-serif;
   text-transform:uppercase;
 }
 .compare-table th:first-child,.compare-table td:first-child{
-  width:24%;font-weight:800;
+  width:19%;font-weight:800;
 }
-.compare-table th:nth-child(2){background:rgba(114,169,186,.38)}
-.compare-table th:nth-child(3){background:rgba(93,122,69,.34)}
-.compare-table th:nth-child(4){background:rgba(223,90,47,.35)}
-.compare-table th:nth-child(5),.compare-table td:last-child{background:rgba(169,50,36,.11)}
+.compare-table th:nth-child(2){background:rgba(114,169,186,.22)}
+.compare-table th:nth-child(3){background:rgba(93,122,69,.18)}
+.compare-table th:nth-child(4){background:rgba(223,90,47,.18)}
+.compare-table th:nth-child(5){background:rgba(169,50,36,.13)}
+.compare-table tbody tr:last-child td{border-bottom:0}
 
 /* details */
 .details-section{background:var(--paper)}
@@ -567,7 +599,7 @@ main{
 /* tablet */
 @media(max-width:1000px){
   .tier-grid{grid-template-columns:1fr 1fr}
-  .tier-card{min-height:430px}
+  .tier-card{min-height:550px}
   .section-head{grid-template-columns:1fr .7fr}
   .scribble-note{display:none}
   .details-grid{grid-template-columns:1fr 1fr}
@@ -684,11 +716,13 @@ main{
   .tier-grid{grid-template-columns:1fr;gap:16px}
   .tier-card{
     min-height:0;
-    padding-bottom:16px;
+    padding:0 17px 17px;
   }
+  .tier-top{margin:0 -17px 18px;padding:12px 14px}
   .tier-card h3{min-height:0;font-size:28px}
-  .tier-card ul{font-size:14px}
+  .tier-card ul{font-size:15px}
   .price{font-size:40px}
+  .tier-result{grid-template-columns:1fr;gap:5px;font-size:14px}
 
   .compare-wrap{margin-top:50px}
   .compare-head h3{font-size:38px}
@@ -697,8 +731,8 @@ main{
     padding-right:14px;
     scroll-snap-type:x proximity;
   }
-  .compare-table{min-width:760px}
-  .compare-table th,.compare-table td{font-size:12px;padding:10px 9px}
+  .compare-table{min-width:790px}
+  .compare-table th,.compare-table td{font-size:14px;padding:11px 10px}
 
   .details-grid{grid-template-columns:1fr}
   .details-grid article{padding-top:15px}
@@ -747,9 +781,12 @@ main{
   aspect-ratio:2/3;
   min-width:0;
   border:0;
-  background:transparent;
+  background:var(--brick);
   box-shadow:none;
 }
+.role-card-reporter{background:var(--sky)}
+.role-card-groupie{background:var(--green)}
+.role-card-artist{background:var(--orange)}
 .role-card-bg{
   position:absolute;
   inset:0;
@@ -808,6 +845,84 @@ main{
   height:5px;
   border-radius:50%;
   background:#fff6df;
+}
+
+.role-ideas{
+  position:relative;
+  margin-top:34px;
+  padding:28px 30px 26px;
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+  background:var(--paper-light);
+}
+.role-ideas-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:28px;
+  align-items:end;
+  margin-bottom:20px;
+}
+.role-ideas-head h3{
+  margin:0;
+  max-width:760px;
+  font:900 clamp(30px,4vw,46px)/.95 "Roboto Slab",serif;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  color:var(--ink);
+}
+.role-ideas-head>div>p:last-child{
+  max-width:650px;
+  margin:10px 0 0;
+  color:#5d4e3e;
+  font-size:16px;
+}
+.role-surprise{
+  min-height:46px;
+  padding:11px 16px;
+  border:2px solid var(--ink);
+  background:transparent;
+  color:var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  font:700 14px/1 Oswald,sans-serif;
+  letter-spacing:.07em;
+}
+.role-surprise:hover,.role-surprise:focus-visible{
+  background:var(--mustard);
+}
+.role-idea-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.role-idea{
+  min-height:44px;
+  padding:10px 14px;
+  border:1.5px solid rgba(31,26,21,.62);
+  background:rgba(242,227,191,.58);
+  color:var(--ink);
+  font:700 14px/1 Oswald,sans-serif;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+}
+.role-idea:hover,.role-idea:focus-visible{background:var(--paper-deep)}
+.role-idea.active,.role-idea[aria-pressed="true"]{
+  background:var(--brick);
+  color:#fff5dc;
+  border-color:var(--ink);
+}
+.role-idea-detail{
+  min-height:47px;
+  margin:17px 0 0;
+  padding-top:14px;
+  border-top:1px dashed rgba(31,26,21,.55);
+  color:#4e4236;
+  font-size:16px;
+}
+.role-idea-detail b{color:var(--brick);text-transform:uppercase}
+.role-ideas-note{
+  margin:6px 0 0;
+  color:#6b5a46;
+  font-size:13px;
 }
 
 .includes-block{
@@ -963,6 +1078,14 @@ main{
     font-size:13px;
     line-height:1.28;
   }
+
+  .role-ideas{margin-top:28px;padding:23px 18px 22px}
+  .role-ideas-head{grid-template-columns:1fr;gap:16px;align-items:start}
+  .role-ideas-head h3{font-size:34px}
+  .role-surprise{justify-self:start}
+  .role-idea-list{gap:7px}
+  .role-idea{font-size:13px;padding:9px 11px}
+  .role-idea-detail{font-size:15px}
 
   .includes-block{margin-top:42px}
   .includes-icons{margin-bottom:10px}

@@ -1,10 +1,10 @@
 const crypto = require('crypto');
 
 const TIERS = {
-  guest: { label: 'Гость фестиваля', price: '1967.00' },
+  guest: { label: 'Массовка', price: '1967.00' },
   featured: { label: 'Первый ряд', price: '4990.00' },
-  cameo: { label: 'Камео', price: '9900.00' },
-  headliner: { label: 'Главная роль', price: '19900.00' },
+  cameo: { label: 'VIP-камео', price: '9900.00' },
+  headliner: { label: 'Хедлайнер', price: '19900.00' },
 };
 
 function clean(value, max = 160) {

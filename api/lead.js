@@ -9,10 +9,10 @@ function parseBody(req) {
 }
 
 const LABELS = {
-  guest: 'Гость фестиваля — 1 967 ₽',
+  guest: 'Массовка — 1 967 ₽',
   featured: 'Первый ряд — 4 990 ₽',
-  cameo: 'Камео — 9 900 ₽',
-  headliner: 'Главная роль — 19 900 ₽',
+  cameo: 'VIP-камео — 9 900 ₽',
+  headliner: 'Хедлайнер — 19 900 ₽',
 };
 
 module.exports = async (req, res) => {
