@@ -28,8 +28,10 @@ function getOrigin(req) {
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Метод не поддерживается' });
 
-  if (String(process.env.PAYMENTS_ENABLED || '').toLowerCase() !== 'true') {
-    return res.status(503).json({ error: 'Оплата ещё не включена. Место можно выбрать, но платёжный модуль пока готовится.' });
+  const paymentsEnabled = String(process.env.PAYMENTS_ENABLED || '').toLowerCase() === 'true';
+  const paymentsLive = String(process.env.PAYMENTS_LIVE || '').toLowerCase() === 'true';
+  if (!paymentsEnabled || !paymentsLive) {
+    return res.status(503).json({ error: 'Онлайн-оплата ещё не включена. Заявка сохранена как предварительная бронь.' });
   }
 
   const shopId = process.env.YOOKASSA_SHOP_ID;

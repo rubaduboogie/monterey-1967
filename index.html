@@ -277,15 +277,15 @@
 
     <section id="payment" class="section payment-section">
       <div class="wrap">
-        <p class="eyebrow dark">ОПЛАТА И ДАЛЬШЕ</p>
+        <p class="eyebrow dark">ЗАЯВКА И ДАЛЬШЕ</p>
         <div class="section-head compact">
-          <h2>СНАЧАЛА МЕСТО. ПОТОМ — ПЕРСОНАЖ И СЦЕНА.</h2>
-          <p>Оплата проходит на защищённой странице ЮКасса. После подтверждения платежа я связываюсь с тобой и собираю материалы для персонажа.</p>
+          <h2 id="paymentHeading">СНАЧАЛА БРОНИРУЕМ МЕСТО. БЕЗ ОПЛАТЫ.</h2>
+          <p id="paymentIntro">Пока ЮКасса завершает подключение, заявка бесплатно фиксирует твой интерес. Я свяжусь с тобой, уточню роль и предложу доступный способ оплаты.</p>
         </div>
         <div class="payment-steps">
           <article><span>01</span><h3>ВЫБИРАЕШЬ УРОВЕНЬ</h3><p>Фиксируем объём участия: присутствие, заметный момент, отдельная сцена или сюжетная роль.</p></article>
-          <article><span>02</span><h3>ОПЛАЧИВАЕШЬ</h3><p>Сайт переводит на страницу ЮКасса. Карточные данные на этом сайте не хранятся и не обрабатываются.</p></article>
-          <article><span>03</span><h3>СОБИРАЕМ ГЕРОЯ</h3><p>После подтверждения оплаты ты получаешь анкету: фотографии, животное, одежда, характер, действие и всё, что хочется спрятать в персонаже.</p></article>
+          <article><span>02</span><h3 id="paymentStepTwoTitle">ОСТАВЛЯЕШЬ ЗАЯВКУ</h3><p id="paymentStepTwoCopy">Это бесплатно и ни к чему не обязывает. Заявка помогает проверить роль, уровень участия и наличие места.</p></article>
+          <article><span>03</span><h3 id="paymentStepThreeTitle">СВЯЗЫВАЕМСЯ</h3><p id="paymentStepThreeCopy">Я отвечу по указанному контакту, уточню детали и пришлю способ оплаты. После оплаты начинаем собирать героя.</p></article>
         </div>
       </div>
     </section>
@@ -295,7 +295,7 @@
         <div class="order-copy">
           <p class="eyebrow">ЗАБРАТЬ МЕСТО</p>
           <h2>КЕМ ТЫ БУДЕШЬ В МОНТЕРЕЕ?</h2>
-          <p>Выбери уровень, оставь контакт и коротко напиши идею. Подробную анкету с пожеланиями отправлю после оплаты.</p>
+          <p id="orderIntro">Выбери уровень, оставь контакт и коротко напиши идею или вопрос. Сейчас заявка бронирует место без оплаты.</p>
           <div class="availability">12 МЕСТ В ЭПИЗОДЕ</div>
           <div class="order-facts">
             <div><small>СТАРТ НАБОРА</small><b>21.09.2026</b></div>
@@ -325,19 +325,19 @@
           <label>Кем хочешь быть?
             <input name="role" maxlength="160" placeholder="Например: бунтарь, гонщик, фотограф или реши за меня" />
           </label>
-          <label>Что хочется делать в эпизоде?
-            <textarea name="comment" rows="4" maxlength="900" placeholder="Можно коротко. Например: хочу пробраться за сцену и флиртовать с музыкантом"></textarea>
+          <label>Идея или вопрос перед участием
+            <textarea name="comment" rows="4" maxlength="900" placeholder="Например: хочу пробраться за сцену и флиртовать с музыкантом. Или спроси, что пока непонятно"></textarea>
           </label>
 
           <div class="order-summary">
-            <span>К оплате</span>
+            <span id="orderSummaryLabel">Выбранный уровень</span>
             <strong id="orderPrice">1 967 ₽</strong>
           </div>
 
           <label class="consent"><input type="checkbox" name="consent" value="yes" required> <span>Я принимаю <a href="/terms" target="_blank" rel="noopener">условия публичной оферты</a> и даю согласие на обработку персональных данных в соответствии с <a href="/privacy" target="_blank" rel="noopener">Политикой обработки персональных данных</a>.</span></label>
 
-          <button class="button pay" id="payButton" type="submit">ПЕРЕЙТИ К ОПЛАТЕ</button>
-          <p class="payment-note" id="paymentNote">Оплата откроется на защищённой странице ЮКасса. Данные карты на этом сайте не вводятся.</p>
+          <button class="button pay" id="payButton" type="submit">ОСТАВИТЬ ЗАЯВКУ</button>
+          <p class="payment-note" id="paymentNote">Заявка бесплатная и не обязывает к оплате. Я свяжусь по электронной почте или в Telegram.</p>
         </form>
       </div>
     </section>

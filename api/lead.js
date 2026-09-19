@@ -15,6 +15,11 @@ const LABELS = {
   headliner: 'Хедлайнер — 19 900 ₽',
 };
 
+const FLOWS = {
+  reservation: 'Предварительная бронь без оплаты',
+  'online-payment': 'Онлайн-оплата',
+};
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Метод не поддерживается' });
 
@@ -25,6 +30,7 @@ module.exports = async (req, res) => {
   const telegram = clean(body.telegram, 80);
   const role = clean(body.role, 160);
   const comment = clean(body.comment, 900);
+  const flow = clean(body.flow, 40);
 
   if (!name || !email) return res.status(400).json({ error: 'Укажите имя и электронную почту' });
   if (!/^\S+@\S+\.\S+$/.test(email)) return res.status(400).json({ error: 'Проверьте адрес электронной почты' });
@@ -37,6 +43,7 @@ module.exports = async (req, res) => {
     telegram,
     role,
     comment,
+    flow: FLOWS[flow] || flow || 'не указан',
   };
 
   console.log('NEW_LEAD', JSON.stringify(lead));
@@ -51,6 +58,7 @@ module.exports = async (req, res) => {
     '🎟 НОВАЯ ЗАЯВКА · МОНТЕРЕЙ 1967',
     '',
     `Уровень: ${lead.tier}`,
+    `Сценарий: ${lead.flow}`,
     `Имя: ${name}`,
     `Email: ${email}`,
     `Telegram: ${telegram || '—'}`,
