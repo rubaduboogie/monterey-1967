@@ -20,6 +20,52 @@ const orderIntro = document.getElementById('orderIntro');
 const orderSummaryLabel = document.getElementById('orderSummaryLabel');
 let paymentsLive = false;
 
+function getTrafficSource(params) {
+  const taggedSource = params.get('utm_source') || params.get('src');
+  if (taggedSource) return taggedSource;
+  if (!document.referrer) return 'прямой переход';
+  try {
+    return new URL(document.referrer).hostname.replace(/^www\./, '');
+  } catch {
+    return 'другой сайт';
+  }
+}
+
+function trackVisit() {
+  const params = new URLSearchParams(location.search);
+  const source = getTrafficSource(params);
+  const medium = params.get('utm_medium') || (source === 'instagram' ? 'social' : '—');
+  const campaign = params.get('utm_campaign') || '—';
+  const storageKey = `montereyVisit:${source}:${campaign}`;
+  const now = Date.now();
+
+  try {
+    const lastSent = Number(localStorage.getItem(storageKey) || 0);
+    if (now - lastSent < 24 * 60 * 60 * 1000) return;
+    localStorage.setItem(storageKey, String(now));
+  } catch {
+    // Если хранилище заблокировано, визит всё равно фиксируется один раз при этой загрузке.
+  }
+
+  const payload = {
+    source,
+    medium,
+    campaign,
+    referrer: document.referrer ? (() => {
+      try { return new URL(document.referrer).hostname; } catch { return 'другой сайт'; }
+    })() : '—',
+    landing: `${location.pathname}${location.hash}`,
+    device: matchMedia('(pointer: coarse)').matches || innerWidth < 768 ? 'мобильное' : 'компьютер',
+  };
+
+  fetch('/api/visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true,
+  }).catch(() => {});
+}
+
 function setCheckoutMode(isLive) {
   paymentsLive = Boolean(isLive);
   note.classList.remove('is-success');
@@ -164,6 +210,7 @@ if (params.get('payment') === 'return') {
 }
 
 setCheckoutMode(false);
+setTimeout(trackVisit, 900);
 fetch('/api/payment-status', { headers: { 'Accept': 'application/json' } })
   .then(response => response.ok ? response.json() : { live: false })
   .then(status => setCheckoutMode(status.live === true))
