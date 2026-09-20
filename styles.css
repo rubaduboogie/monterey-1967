@@ -355,6 +355,55 @@ main{
 .tier-card .choose-tier:hover{background:var(--mustard)}
 .headliner-strip,.headliner-buy,.small-label{display:none}
 
+.episode-growth{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:34px;
+  align-items:end;
+  margin-top:46px;
+  padding:32px 34px;
+  border:2px solid var(--ink);
+  background:var(--forest);
+  color:var(--paper-light);
+  box-shadow:7px 7px 0 var(--ink);
+}
+.episode-growth .eyebrow{
+  margin:0 0 12px;
+  color:var(--mustard);
+}
+.episode-growth h3{
+  max-width:850px;
+  margin:0 0 14px;
+  font:900 clamp(34px,4.8vw,58px)/.93 "Roboto Slab",serif;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+}
+.episode-growth-copy>p:not(.eyebrow){
+  max-width:780px;
+  margin:0 0 14px;
+  color:#f8e8c6;
+  font-size:18px;
+  line-height:1.5;
+}
+.episode-growth strong{
+  display:block;
+  max-width:760px;
+  color:#fff7e3;
+  font-size:17px;
+  line-height:1.4;
+}
+.episode-growth-cta{
+  min-width:218px;
+  margin-bottom:2px;
+  background:var(--mustard);
+  color:var(--ink);
+  box-shadow:4px 4px 0 #0d221b;
+  text-align:center;
+  white-space:nowrap;
+}
+.episode-growth-cta:hover{background:var(--paper-light)}
+
 /* comparison */
 .compare-wrap{margin-top:62px}
 .compare-head h3{
@@ -608,6 +657,8 @@ main{
 @media(max-width:1000px){
   .tier-grid{grid-template-columns:1fr 1fr}
   .tier-card{min-height:550px}
+  .episode-growth{grid-template-columns:1fr;align-items:start}
+  .episode-growth-cta{justify-self:start}
   .section-head{grid-template-columns:1fr .7fr}
   .scribble-note{display:none}
   .details-grid{grid-template-columns:1fr 1fr}
@@ -731,6 +782,16 @@ main{
   .tier-card ul{font-size:15px}
   .price{font-size:40px}
   .tier-result{grid-template-columns:1fr;gap:5px;font-size:14px}
+  .episode-growth{
+    gap:24px;
+    margin-top:32px;
+    padding:25px 20px 23px;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .episode-growth h3{font-size:34px}
+  .episode-growth-copy>p:not(.eyebrow){font-size:16px}
+  .episode-growth strong{font-size:15px}
+  .episode-growth-cta{width:100%;min-width:0}
 
   .compare-wrap{margin-top:50px}
   .compare-head h3{font-size:38px}
